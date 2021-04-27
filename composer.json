@@ -1,0 +1,19 @@
+{
+    "name": "xtompie/sorter",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tomasz Pielczyk",
+            "email": "tomasz.pielczyk@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Xtompie\\Sorter\\": "src"
+        }
+    },    
+    "require": {
+        "php": "^8.0"
+    }
+}
