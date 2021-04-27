@@ -1,17 +1,6 @@
-# Sorter
-
-PHP array_multisort wrapper with friendly api
-
-## Installation
-
-```bash
-composer require xtompie/sorter
-```
-
-## Usage
-
-```php
 <?php
+
+require 'vendor/autoload.php';
 
 use Xtompie\Sorter\Sorter;
 
@@ -25,10 +14,3 @@ print_r(
             ['id' => '3', 'city' => (object)['name' => 'K']],
         ])
 );
-
-```
-
-## TODO
-
-- add tests
-- 
