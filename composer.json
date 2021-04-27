@@ -1,6 +1,8 @@
 {
     "name": "xtompie/sorter",
     "type": "library",
+    "description": "PHP array_multisort wrapper with friendly api",
+    "keywords": ["array_multisort", "multisort", "sorter", "sort"],
     "license": "MIT",
     "authors": [
         {
