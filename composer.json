@@ -1,7 +1,7 @@
 {
     "name": "xtompie/sorter",
     "type": "library",
-    "description": "PHP array_multisort wrapper with friendly api",
+    "description": "Sort multidimensional array by multiple criteria like columns, keys, any deep value",
     "keywords": ["array_multisort", "multisort", "sorter", "sort"],
     "license": "MIT",
     "authors": [

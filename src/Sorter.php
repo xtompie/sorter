@@ -24,15 +24,15 @@ class Sorter
     public function sort(array $data): array
     {
         $index = [];
-        foreach ($data as $data_index => $data_item) {
-            foreach ($this->sortings as $sorting_index => $sorting) {
-                $index[$sorting_index][$data_index] = ($sorting[0])($data_item);
+        foreach ($data as $key => $value) {
+            foreach ($this->sortings as $offset => $sorting) {
+                $index[$offset][$key] = ($sorting[0])($value, $key);
             }
         }
 
         $args = [];
-        foreach ($this->sortings as $sorting_index => $sorting) {
-            $args[] = $index[$sorting_index];
+        foreach ($this->sortings as $offset => $sorting) {
+            $args[] = $index[$offset];
             $args[] = $sorting[1]; // SORT_ASC|SORT_DESC
             $args[] = $sorting[2]; // flags SORT_...
         }
