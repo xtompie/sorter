@@ -1,8 +1,8 @@
 {
     "name": "xtompie/sorter",
     "type": "library",
-    "description": "Sort multidimensional array by multiple criteria like columns, keys, any deep value",
-    "keywords": ["array_multisort", "multisort", "sorter", "sort"],
+    "description": "Sort multidimensional array by multiple criteria like array values, object properties, any deep value",
+    "keywords": ["array_multisort", "multisort", "sorter", "sort", "sorting"],
     "license": "MIT",
     "authors": [
         {
@@ -14,8 +14,14 @@
         "psr-4": {
             "Xtompie\\Sorter\\": "src"
         }
-    },    
+    },
     "require": {
         "php": "^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit tests"
     }
 }

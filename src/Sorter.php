@@ -1,61 +1,35 @@
 <?php
 
-namespace Xtompie\Sorter;
+declare(strict_types=1);
 
-use Closure;
+namespace Xtompie\Sorter;
 
 class Sorter
 {
-    public static function new(): static
-    {
-        return new static([]);
-    }
-
-    public function asc(string|Closure $field, $flags = SORT_REGULAR): static
-    {
-        return $this->merge($field, SORT_ASC, $flags);
-    }
-
-    public function desc(string|Closure $field, $flags = SORT_REGULAR): static
-    {
-        return $this->merge($field, SORT_DESC, $flags);
-    }
-
-    public function sort(array $data): array
+    /**
+     * @param array $data
+     * @param Sort[] $sorts
+     * @return array
+     */
+    public function __invoke(array $sorts, array $data): array
     {
         $index = [];
-        foreach ($data as $key => $value) {
-            foreach ($this->sortings as $offset => $sorting) {
-                $index[$offset][$key] = ($sorting[0])($value, $key);
+        foreach ($data as $data_index => $item) {
+            foreach ($sorts as $sort_index => $sort) {
+                $index[$sort_index][$data_index] = ($sort->take())($item, $data_index);
             }
         }
 
         $args = [];
-        foreach ($this->sortings as $offset => $sorting) {
-            $args[] = $index[$offset];
-            $args[] = $sorting[1]; // SORT_ASC|SORT_DESC
-            $args[] = $sorting[2]; // flags SORT_...
+        foreach ($sorts as $sort_index => $sort) {
+            $args[] = $index[$sort_index];
+            $args[] = $sort->order();
+            $args[] = $sort->falgs();
         }
         $args[] = &$data;
 
-        call_user_func_array('array_multisort', $args);     
-        
+        call_user_func_array('array_multisort', $args);
+
         return $data;
     }
-
-    protected function __construct(
-        protected array $sortings
-    ) {}
-
-    protected function merge(string|Closure $value, $order, $flags): static
-    {
-        $add = [
-            is_string($value) ? fn($item) => $item[$value] : $value,
-            $order,
-            $flags
-        ];
-
-        return new static(array_merge($this->sortings, [$add]));
-    }
-
 }
