@@ -37,4 +37,21 @@ class SorterTest extends TestCase
             $result
         );
     }
+
+    public function testEmpty()
+    {
+        // given
+        $sorts = [
+            Sort::ofKey('city'),
+            Sort::ofKey('street', SORT_DESC),
+            Sort::of(fn($i) => $i['meta']->priority),
+        ];
+        $data = [];
+
+        // when
+        $result = (new Sorter())($sorts, $data);
+
+        // then
+        $this->assertEquals([], $result);
+    }
 }

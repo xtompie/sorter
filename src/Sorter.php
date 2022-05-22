@@ -13,6 +13,10 @@ class Sorter
      */
     public function __invoke(array $sorts, array $data): array
     {
+        if (!$data) {
+            return [];
+        }
+
         $index = [];
         foreach ($data as $data_index => $item) {
             foreach ($sorts as $sort_index => $sort) {
